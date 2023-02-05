@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<context:component-scan base-package="beans" />
+	
+	<context:annotation-config />
+	<bean id="emp1" class="beans.Employee" autowire="byType">
+		<property name="eid" value="121" />
+		<property name="name" value="kaushik" />
+		<property name="salary" value="9999999" />
+	</bean>
+	<bean id="emp2" class="beans.Employee">
+		<property name="eid" value="122" />
+		<property name="name" value="anya" />
+		<property name="salary" value="9999999" />
+		<property name="address" ref="address" />
+	</bean>
+	<bean id="address" class="beans.Address">
+		<property name="addressLine1" value="hyatt"></property>
+		<property name="addressLine2" value="pune"></property>
+	</bean>
+	
+	
+	<bean id="emp3" class="beans.Employee">
+		<constructor-arg ref="address"></constructor-arg>
+		<constructor-arg value="123" type="int" />
+		<constructor-arg value="Khass" />
+		<constructor-arg value="900000" type="int" />
+	</bean>
+	<bean id="emp4" class="beans.Employee">
+		<property name="eid" value="122" />
+		<property name="name" value="anya" />
+		<property name="salary" value="9999999" />
+		<property name="address" ref="address" />
+		<constructor-arg>
+			<bean class="beans.Address">
+				<property name="addressLine1" value="hyatt"></property>
+				<property name="addressLine2" value="pune"></property>
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="emp5List" class="beans.Employee">
+		<property name="eid" value="122"/>
+		<property name="name" value="anya" />
+		<property name="salary" value="9999999" />
+		<property name="address" ref="address" />
+		<property name="languages">
+			<list>
+				<value>English</value>
+				<value>Hindi</value>
+				<value>Telugu</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="vehicle" class="beans.Bike"></bean>
+</beans>
